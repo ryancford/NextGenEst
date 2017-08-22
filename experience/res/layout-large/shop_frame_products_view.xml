@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingTop="@dimen/spacing_normal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ec_title_name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textXLarge"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="@dimen/close_icon_dimen"
+            android:layout_height="@dimen/close_icon_dimen"
+            android:src="@drawable/close_x_circle"
+            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"/>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:id="@+id/frame_product_detail_fragment"
+            android:name="com.wb.nextgenlibrary.fragment.ShopItemDetailFragment"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/frame_product_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+</LinearLayout>
