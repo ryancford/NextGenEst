@@ -5,17 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.fandango.fandangonow.android.nextgenest.dash.CPEDemoMovieFragment_Dash;
-import com.wb.nextgenlibrary.NextGenExperience;
-import com.wb.nextgenlibrary.util.concurrent.Worker;
-
-import java.io.File;
-import java.util.Locale;
-import java.util.concurrent.Callable;
-
 import com.fandango.fandangonow.android.nextgenest.mainmoviefragment.SimpleMainMovieFragment;
+import com.wb.nextgenlibrary.NextGenExperience;
+
+import java.util.Locale;
 public class CPEDemoActivity extends AppCompatActivity {
 
 /*
