@@ -1,1 +1,1 @@
-include ':experience', ':demo'
+include ':demo', ':experience'

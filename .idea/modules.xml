@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cpe-manifest-android-demo.iml" filepath="$PROJECT_DIR$/cpe-manifest-android-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NextGenEST.iml" filepath="$PROJECT_DIR$/NextGenEST.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/experience/experience.iml" filepath="$PROJECT_DIR$/experience/experience.iml" />
     </modules>

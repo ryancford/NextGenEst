@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:nextgen="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/next_gen_ime_actionbar_placeholder"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="?actionBarSize"/>
+    <com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout
+        android:id="@+id/video_view_frame"
+        nextgen:aspectRatioWidth="16"
+        nextgen:aspectRatioHeight="9"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        nextgen:whenOrientation="PORTRAIT"
+        android:background="@color/black">
+        <RelativeLayout
+            android:id="@+id/interstitial_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout
+                xmlns:nextgen="http://schemas.android.com/apk/res-auto"
+                nextgen:aspectRatioHeight="9"
+                nextgen:aspectRatioWidth="16"
+                android:layout_centerInParent="true"
+                nextgen:priority="HEIGHT_PRIORITY"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                nextgen:allowLargerThanParent="true">
+                <com.wb.nextgenlibrary.videoview.ObservableVideoView
+                    android:id="@+id/interstitial_video_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/skip_this_layout"
+                    android:background="@color/black"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/textLarge"
+                    android:visibility="invisible"
+                    android:layout_gravity="center">
+                    <com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/skip_this_icon_dimen"
+                        android:layout_gravity="center_vertical"
+                        nextgen:aspectRatioWidth="1"
+                        nextgen:aspectRatioHeight="1"
+                        nextgen:priority="HEIGHT_PRIORITY">
+                        <ProgressBar
+                            android:id="@+id/skip_this_countdown"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:progressDrawable="@drawable/skip_progress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:visibility="visible"/>
+                    </com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout>
+
+                    <com.wb.nextgenlibrary.widget.FontFitTextView
+                        android:paddingLeft="@dimen/spacing_normal"
+                        android:paddingRight="@dimen/spacing_normal"
+                        android:id="@+id/skip_this_text"
+                        android:text="@string/skip_this"
+                        android:textColor="@color/drawer_yellow"
+                        android:textSize="@dimen/skip_this_text_size"
+                        android:gravity="center"
+                        android:fontFamily="sans-serif-condensed"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:src="@drawable/nge_skip_arrow"
+                        android:layout_width="@dimen/skip_this_forward_icon_size"
+                        android:layout_height="@dimen/skip_this_forward_icon_size"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="11"/>
+
+
+            </LinearLayout>
+            <ProgressBar
+                android:background="@color/transparent_gray"
+                android:id="@+id/next_gen_loading_progress_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:progressBackgroundTint="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/spacing_xsmall"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </com.wb.nextgenlibrary.widget.FixedAspectRatioFrameLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/next_gen_ime_bottom_view">
+
+        <ImageView
+            android:id="@+id/ime_background_image_view"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</LinearLayout>
