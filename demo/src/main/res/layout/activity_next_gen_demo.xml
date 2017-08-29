@@ -13,10 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start (non DRM protected)"/>
+
     <Button
         android:id="@+id/start_dash_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start (Widevine Modular DRM)"/>
+
+    <Button
+        android:id="@+id/start_fnow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start (FandangoNOW)"/>
 
 </LinearLayout>

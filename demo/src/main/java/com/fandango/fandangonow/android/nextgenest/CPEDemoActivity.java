@@ -48,13 +48,19 @@ public class CPEDemoActivity extends AppCompatActivity {
 			"https://d3hu292hohbyvv.cloudfront.net/xml/urn:dece:cid:eidr-s:4CC8-D548-A0E4-D319-5B2D-H/suicidesquad_extended_appdata_preview-1.0.xml",
 			"https://d3hu292hohbyvv.cloudfront.net/xml/urn:dece:cid:eidr-s:4CC8-D548-A0E4-D319-5B2D-H/suicidesquad_extended_cpestyle_preview-1.1.xml");
 
+	final NextGenExperience.ManifestItem fnowItem = new NextGenExperience.ManifestItem("Man on Wire - Batman vs Superman w/360", "urn:dece:cid:eidr-s:B257-8696-871C-A12B-B8C1-S",
+            "https://cpe-manifest.s3.amazonaws.com/uvvu-images/2C89FE061219D322E05314345B0AFE72",
+            "https://d3hu292hohbyvv.cloudfront.net/xml/urn:dece:cid:eidr-s:4CC8-D548-A0E4-D319-5B2D-H/suicidesquad_extended_manifest_preview-1.0.xml",
+            "https://d3hu292hohbyvv.cloudfront.net/xml/urn:dece:cid:eidr-s:4CC8-D548-A0E4-D319-5B2D-H/suicidesquad_extended_appdata_preview-1.0.xml",
+            "https://d3hu292hohbyvv.cloudfront.net/xml/urn:dece:cid:eidr-s:4CC8-D548-A0E4-D319-5B2D-H/suicidesquad_extended_cpestyle_preview-1.1.xml");
+
 	static int DESIRE_VISIBILITY =
 			View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
 					View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
 					View.SYSTEM_UI_FLAG_FULLSCREEN |
 					View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
-	Button startNEGButton, startNGEDashButton;
+	Button startNEGButton, startNGEDashButton, fnowButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +103,23 @@ public class CPEDemoActivity extends AppCompatActivity {
 			}
 		});
 
+				fnowButton = (Button) findViewById(R.id.start_fnow_btn);
+				fnowButton.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						CPEDemoMovieFragment_Dash.DashContent dashContent =
+								new CPEDemoMovieFragment_Dash.DashContent("http://mgo.vo.llnwd.net/v1/bba0c24c/mgo/E2/v1/private/HD/DASH/MMVE2B5157507424B86C266B4F43C097E83A/MMVE2B5157507424B86C266B4F43C097E83A_HD.mpd",
+										"https://www.mgo.com/licenseproxy/services/widevine/cenc/getLicense",
+										"0894c7c8719b28a0", "widevine_test");
+						try {
+							NextGenExperience.startNextGenExperience(getApplicationContext(), CPEDemoActivity.this,
+									fnowItem, dashContent, CPEDemoMovieFragment_Dash.class, null,
+									new CPEDemoHandler(), Locale.US, "WB");
+						} catch (NextGenExperience.NextGenEmptyStudioStringException ex){
+
+						}
+			}
+		});
 	}
 
 	@Override

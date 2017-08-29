@@ -361,6 +361,9 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 		if (!isDRMProtectedPlayback || (bStreamPrepared && !isPausedForIMEVideoPlayback)) {
 			if (player == null && currentPlaybackContent != null) {
 				DrmSessionManager<FrameworkMediaCrypto> drmSessionManager = null;
+
+				//SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON;
+				@SimpleExoPlayer.ExtensionRendererMode int extensionRendererMode = SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
 				if (isDRMProtectedPlayback){
 					//if (drmSchemeUuid != null) {
 
@@ -370,7 +373,7 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 					//String[] keyRequestPropertiesArray = intent.getStringArrayExtra(DRM_KEY_REQUEST_PROPERTIES);
                     /*Map<String, String> keyRequestProperties;
                     if (keyRequestPropertiesArray == null || keyRequestPropertiesArray.length < 2) {
-                        keyRequestProperties = null;
+                        keyRequestProperties = null;data
                     } else {
                         keyRequestProperties = new HashMap<>();
                         for (int i = 0; i < keyRequestPropertiesArray.length - 1; i += 2) {
@@ -381,6 +384,9 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 					try {
 						drmSessionManager = buildDrmSessionManager(C.WIDEVINE_UUID, drmLicenseUrl,
 								keyRequestProperties);
+                        drmSessionManager = buildDrmSessionManagerForWidevine(C.WIDEVINE_UUID, drmLicenseUrl,
+                                keyRequestProperties);
+
 					} catch (UnsupportedDrmException e) {
 						int errorStringId = Util.SDK_INT < 18 ? R.string.error_drm_not_supported
 								: (e.reason == UnsupportedDrmException.REASON_UNSUPPORTED_SCHEME
@@ -388,7 +394,7 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 						showToast(errorStringId);
 						return;
 					}
-					int extensionRendererMode = SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON;//SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
+//					int extensionRendererMode = SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON;//SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
 					TrackSelection.Factory videoTrackSelectionFactory =
 							new AdaptiveVideoTrackSelection.Factory(BANDWIDTH_METER);
 					trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
@@ -396,9 +402,6 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 							drmSessionManager, extensionRendererMode);
 					player.addListener(this);
 				}
-
-				@SimpleExoPlayer.ExtensionRendererMode int extensionRendererMode = SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON;//SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
-
 
 				simpleExoPlayerView.setPlayer(player);
 
@@ -523,7 +526,6 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 		}
 	}
 
-
 	private DrmSessionManager<FrameworkMediaCrypto> buildDrmSessionManager(UUID uuid, String licenseUrl, Map<String, String> keyRequestProperties) throws UnsupportedDrmException {
 		if (Util.SDK_INT < 18) {
 			return null;
@@ -532,6 +534,17 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 				buildHttpDataSourceFactory(false), keyRequestProperties);
 		return new StreamingDrmSessionManager<>(uuid,
 				FrameworkMediaDrm.newInstance(uuid), drmCallback, null, mainHandler, null);
+	}
+
+	private DrmSessionManager<FrameworkMediaCrypto> buildDrmSessionManagerForWidevine(UUID uuid, String licenseUrl, Map<String, String> keyRequestProperties) throws UnsupportedDrmException
+	{
+		if (com.google.android.exoplayer2.util.Util.SDK_INT < 18)
+		{
+			return null;
+		}
+
+		WidevineMediaDrmCallback drmCallback = new WidevineMediaDrmCallback(licenseUrl);
+		return new StreamingDrmSessionManager<>(uuid, FrameworkMediaDrm.newInstance(uuid), drmCallback, (HashMap<String, String>)keyRequestProperties, mainHandler, null);
 	}
 
 	private void trackPlaybackEvent(String eventLabel, int eventValue) {
