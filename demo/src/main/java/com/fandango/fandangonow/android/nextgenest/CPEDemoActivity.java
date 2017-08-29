@@ -108,7 +108,7 @@ public class CPEDemoActivity extends AppCompatActivity {
 					@Override
 					public void onClick(View v) {
 						CPEDemoMovieFragment_Dash.DashContent dashContent =
-								new CPEDemoMovieFragment_Dash.DashContent("http://mgo.vo.llnwd.net/v1/bba0c24c/mgo/E2/v1/private/HD/DASH/MMVE2B5157507424B86C266B4F43C097E83A/MMVE2B5157507424B86C266B4F43C097E83A_HD.mpd",
+								new CPEDemoMovieFragment_Dash.DashContent("http://mgo.vo.llnwd.net/v1/c4af61a0/mgo/6E/v1/private/HD/DASH/MMV6E28ED7A7CD182832782BB48F3594B5E8/MMV6E28ED7A7CD182832782BB48F3594B5E8_HD.mpd",
 										"https://www.mgo.com/licenseproxy/services/widevine/cenc/getLicense",
 										"0894c7c8719b28a0", "widevine_test");
 						try {

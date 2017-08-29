@@ -542,9 +542,11 @@ public class CPEDemoMovieFragment_Dash extends AbstractNGEMainMovieFragment impl
 		{
 			return null;
 		}
-
 		WidevineMediaDrmCallback drmCallback = new WidevineMediaDrmCallback(licenseUrl);
-		return new StreamingDrmSessionManager<>(uuid, FrameworkMediaDrm.newInstance(uuid), drmCallback, (HashMap<String, String>)keyRequestProperties, mainHandler, null);
+		DrmSessionManager<FrameworkMediaCrypto> drmSessionManager = StreamingDrmSessionManager.newWidevineInstance(
+				drmCallback, null, mainHandler, null);
+//		new StreamingDrmSessionManager<>(uuid, FrameworkMediaDrm.newInstance(uuid), drmCallback, (HashMap<String, String>)keyRequestProperties, mainHandler, null);
+		return drmSessionManager;
 	}
 
 	private void trackPlaybackEvent(String eventLabel, int eventValue) {

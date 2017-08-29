@@ -35,7 +35,7 @@ public class WidevineMediaDrmCallback implements MediaDrmCallback
         {
             urlConnection = (HttpURLConnection) new URL(url).openConnection();
             urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Authorization", "Bearer 5a0f6da2da4848b3b14b866f7cbd9552");
+            urlConnection.setRequestProperty("Authorization", "Bearer c85c1e64e47e47c28941a893c4c33bef");
             urlConnection.setRequestProperty("Content-Type", "application/octet-stream");
             urlConnection.setDoOutput(data != null);
             urlConnection.setDoInput(true);
@@ -60,14 +60,17 @@ public class WidevineMediaDrmCallback implements MediaDrmCallback
                 }
             }
             // Read and return the response body.
-            InputStream inputStream = urlConnection.getInputStream();
-            try
+
+            if (urlConnection.getResponseCode() != 403)
             {
-                return Util.toByteArray(inputStream);
+                try (InputStream inputStream = urlConnection.getInputStream())
+                {
+                    return Util.toByteArray(inputStream);
+                }
             }
-            finally
+            else
             {
-                inputStream.close();
+                return new byte[]{};
             }
         }
         finally
